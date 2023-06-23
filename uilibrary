@@ -1940,7 +1940,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 
 				if not DropdownSettings.MultipleOptions then
-					DropdownSettings.CurrentOption = {DropdownSettings.CurrentOption[1]}
+					DropdownSettings.CurrentOption = DropdownSettings.CurrentOption[1]
 				end
 
 				if DropdownSettings.MultipleOptions then
@@ -2364,8 +2364,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			function SliderSettings:Set(NewVal)
 				TweenService:Create(Slider.Main.Progress, TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Slider.Main.AbsoluteSize.X * ((NewVal + SliderSettings.Range[1]) / (SliderSettings.Range[2] - SliderSettings.Range[1])) > 5 and Slider.Main.AbsoluteSize.X * (NewVal / (SliderSettings.Range[2] - SliderSettings.Range[1])) or 5, 1, 0)}):Play()
-				--hey
-                print("New val is: "..NewVal)
                 Slider.Main.Information.Text = tostring(NewVal) .. " " .. SliderSettings.Suffix
 				local Success, Response = pcall(function()
 					SliderSettings.Callback(NewVal)
