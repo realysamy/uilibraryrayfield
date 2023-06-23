@@ -1697,11 +1697,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end)
 
             function InputSettings:Set(NewOption)
-				InputSettings.CurrentValue = NewOption
-
-				InputSettings.CurrentValue = InputSettings.CurrentValue
-
-
 				local Success, Response = pcall(function()
 					InputSettings.Callback(NewOption)
 				end)
@@ -1715,7 +1710,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
-
+                InputSettings.CurrentValue = NewOption
                 SaveConfiguration()
 			end
 
@@ -1726,7 +1721,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
             return InputSettings
-            
+
 		end
 
 		-- Dropdown
