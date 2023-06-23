@@ -1940,7 +1940,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 
 				if not DropdownSettings.MultipleOptions then
-					DropdownSettings.CurrentOption = DropdownSettings.CurrentOption[1]
+					DropdownSettings.CurrentOption = {DropdownSettings.CurrentOption[1]}
 				end
 
 				if DropdownSettings.MultipleOptions then
