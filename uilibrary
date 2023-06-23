@@ -1725,8 +1725,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end
 
-			return InputSettings
-
+            return InputSettings
+            
 		end
 
 		-- Dropdown
