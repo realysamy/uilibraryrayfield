@@ -1725,7 +1725,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end
 
-			
+			return InputSettings
 
 		end
 
