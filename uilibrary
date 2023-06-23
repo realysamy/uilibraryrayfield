@@ -2379,7 +2379,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
 				SliderSettings.CurrentValue = NewVal
-                Slider.Main.Information.Text = tostring(NewVal)
+                print("Text value is: "..Slider.Main.Information.Text)
 				SaveConfiguration()
 			end
 			if Settings.ConfigurationSaving then
