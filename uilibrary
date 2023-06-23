@@ -271,6 +271,7 @@ local function SaveConfiguration()
 	writefile(ConfigurationFolder .. "/" .. CFileName .. ConfigurationExtension, tostring(HttpService:JSONEncode(Data)))
 end
 
+
 local neon = (function() -- Open sourced neon module
 	local module = {}
 
@@ -1672,15 +1673,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 
 				if InputSettings.RemoveTextAfterFocusLost then
+                    InputSettings.CurrentText = Input.InputFrame.InputBox.Text 
 					Input.InputFrame.InputBox.Text = ""
 				end
-				
-                InputSettings.CurrentValue = Input.InputFrame.InputBox.Text
-                if Settings.ConfigurationSaving then
-                    if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
-                        RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings
-                    end
-                end
+
+                SaveConfiguration()
 			end)
 
 			Input.MouseEnter:Connect(function()
@@ -1696,9 +1693,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end)
 
             function InputSettings:Set(NewOption)
-				InputSettings.CurrentValue = NewOption
+				InputSettings.CurrentText = NewOption
 
-				InputSettings.CurrentValue = InputSettings.CurrentValue
+				InputSettings.CurrentText = InputSettings.CurrentText
 
 
 				local Success, Response = pcall(function()
