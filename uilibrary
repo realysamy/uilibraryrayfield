@@ -1671,8 +1671,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
                 
 				if InputSettings.RemoveTextAfterFocusLost then
-                    InputSettings.CurrentValue = Input.InputFrame.InputBox.Text
-                    SaveConfiguration()
+                    NogTog = Input.InputFrame.InputBox.Text
 					Input.InputFrame.InputBox.Text = ""
 				end
 				SaveConfiguration()
@@ -1688,12 +1687,16 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end)
 
 			Input.InputFrame.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
-                print(InputSettings.CurrentValue.."   cv")
-                print(Input.InputFrame.InputBox.Text.."    text")
+                if not InputSettings.RemoveTextAfterFocusLost then
                 InputSettings.CurrentValue = Input.InputFrame.InputBox.Text
                 SaveConfiguration()
 				TweenService:Create(Input.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)}):Play()
-			end)
+                elseif InputSettings.RemoveTextAfterFocusLost then
+                InputSettings.CurrentValue = NogTog
+                SaveConfiguration()
+				TweenService:Create(Input.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)}):Play()
+            end
+            end)
 
             if Settings.ConfigurationSaving then
 				if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
