@@ -1706,6 +1706,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end
 
+
             return InputSettings
 		end
 
@@ -1735,6 +1736,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			if DropdownSettings.MultipleOptions then
 				if #DropdownSettings.CurrentOption == 1 then
 					Dropdown.Selected.Text = DropdownSettings.CurrentOption[1]
+                    SaveConfiguration()
 				elseif #DropdownSettings.CurrentOption == 0 then
 					Dropdown.Selected.Text = "None"
 				else
@@ -1742,6 +1744,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			else
 				Dropdown.Selected.Text = DropdownSettings.CurrentOption[1]
+                SaveConfiguration()
 			end
 
 
@@ -1864,6 +1867,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 						if DropdownSettings.MultipleOptions then
 							if #DropdownSettings.CurrentOption == 1 then
 								Dropdown.Selected.Text = DropdownSettings.CurrentOption[1]
+                                SaveConfiguration()
 							elseif #DropdownSettings.CurrentOption == 0 then
 								Dropdown.Selected.Text = "None"
 							else
@@ -1871,6 +1875,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 							end
 						else
 							Dropdown.Selected.Text = DropdownSettings.CurrentOption[1]
+                            SaveConfiguration()
 						end
 						TweenService:Create(DropdownOption.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {Transparency = 1}):Play()
 						TweenService:Create(DropdownOption, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {BackgroundColor3 = Color3.fromRGB(40, 40, 40)}):Play()
@@ -1916,7 +1921,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 						Dropdown.List.Visible = false
 					end
 					Debounce = false	
-					SaveConfiguration()
 				end)
 			end
 
