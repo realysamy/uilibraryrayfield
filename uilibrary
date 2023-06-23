@@ -1673,11 +1673,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 
 				if InputSettings.RemoveTextAfterFocusLost then
-                    InputSettings.CurrentText = Input.InputFrame.InputBox.Text 
+                    InputSettings.CurrentValue = Input.InputFrame.InputBox.Text 
 					Input.InputFrame.InputBox.Text = ""
 				end
-
-                SaveConfiguration()
 			end)
 
 			Input.MouseEnter:Connect(function()
@@ -1693,9 +1691,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end)
 
             function InputSettings:Set(NewOption)
-				InputSettings.CurrentText = NewOption
+				InputSettings.CurrentValue = NewOption
 
-				InputSettings.CurrentText = InputSettings.CurrentText
+				InputSettings.CurrentValue = InputSettings.CurrentValue
 
 
 				local Success, Response = pcall(function()
@@ -1712,7 +1710,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
 
-				--SaveConfiguration()
+				SaveConfiguration()
 			end
 
 			if Settings.ConfigurationSaving then
