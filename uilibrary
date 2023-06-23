@@ -1674,7 +1674,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 				if InputSettings.RemoveTextAfterFocusLost then
 					Input.InputFrame.InputBox.Text = ""
 				end
-				SaveConfiguration()
+				if Settings.ConfigurationSaving then
+                    if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
+                        RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings
+                    end
+                end
 			end)
 
 			Input.MouseEnter:Connect(function()
@@ -1709,7 +1713,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
 
-				SaveConfiguration()
+				--SaveConfiguration()
 			end
 
 			if Settings.ConfigurationSaving then
