@@ -1720,8 +1720,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
             if Settings.ConfigurationSaving then
-				if Settings.ConfigurationSaving.Enabled and ToggleSettings.Flag then
-					RayfieldLibrary.Flags[ToggleSettings.Flag] = ToggleSettings
+				if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
+					RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings
 				end
 			end
 
