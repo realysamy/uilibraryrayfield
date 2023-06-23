@@ -1956,6 +1956,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 						Dropdown.Selected.Text = "Various"
 					end
 				else
+                    if DropdownSettings.CurrentOption[1] == nil then
+                        print("The option is nil");
+                        return
+                    end 
 					Dropdown.Selected.Text = DropdownSettings.CurrentOption[1]
 				end
 
