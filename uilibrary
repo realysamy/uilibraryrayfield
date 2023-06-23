@@ -1657,6 +1657,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			Input.InputFrame.InputBox.FocusLost:Connect(function()
                 InputSettings.CurrentValue = Input.InputFrame.InputBox.Text 
+                print(Input.InputFrame.InputBox.Text)
 				local Success, Response = pcall(function()
 					InputSettings.Callback(Input.InputFrame.InputBox.Text)
 				end)
@@ -1671,7 +1672,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
 				if InputSettings.RemoveTextAfterFocusLost then
-                    print(InputSettings.CurrentValue)
 					Input.InputFrame.InputBox.Text = ""
 				end
                 if Settings.ConfigurationSaving then
