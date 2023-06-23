@@ -1676,7 +1676,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 				
                 InputSettings.CurrentValue = Input.InputFrame.InputBox.Text
-                SaveConfiguration()
+                if Settings.ConfigurationSaving then
+                    if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
+                        RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings
+                    end
+                end
 			end)
 
 			Input.MouseEnter:Connect(function()
