@@ -1709,7 +1709,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
 
-				--SaveConfiguration()
+				SaveConfiguration()
 			end
 
 			if Settings.ConfigurationSaving then
