@@ -1671,11 +1671,15 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
-
+                InputSettings.CurrentValue = Input.InputFrame.InputBox.Text 
 				if InputSettings.RemoveTextAfterFocusLost then
-                    InputSettings.CurrentValue = Input.InputFrame.InputBox.Text 
 					Input.InputFrame.InputBox.Text = ""
 				end
+                if Settings.ConfigurationSaving then
+                    if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
+                        RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings.CurrentValue
+                    end
+                end
 			end)
 
 			Input.MouseEnter:Connect(function()
