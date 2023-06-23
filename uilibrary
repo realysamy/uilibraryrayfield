@@ -1671,6 +1671,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
                 
 				if InputSettings.RemoveTextAfterFocusLost then
+                    InputSettings.CurrentValue = Input.InputFrame.InputBox.Text
+                    SaveConfiguration()
 					Input.InputFrame.InputBox.Text = ""
 				end
 				SaveConfiguration()
