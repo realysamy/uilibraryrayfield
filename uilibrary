@@ -1654,7 +1654,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Input.InputFrame.Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)
 
 			Input.InputFrame.InputBox.FocusLost:Connect(function()
-
+                InputSettings.CurrentValue = Input.InputFrame.InputBox.Text
 
 				local Success, Response = pcall(function()
 					InputSettings.Callback(Input.InputFrame.InputBox.Text)
@@ -1669,18 +1669,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
-
+                
 				if InputSettings.RemoveTextAfterFocusLost then
 					Input.InputFrame.InputBox.Text = ""
 				end
 				SaveConfiguration()
 			end)
 
-            if Settings.ConfigurationSaving then
-				if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
-					RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings
-				end
-			end
 
 			Input.MouseEnter:Connect(function()
 				TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.ElementBackgroundHover}):Play()
@@ -1691,8 +1686,17 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end)
 
 			Input.InputFrame.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
+                InputSettings.CurrentValue = Input.InputFrame.InputBox.Text
 				TweenService:Create(Input.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)}):Play()
 			end)
+
+            if Settings.ConfigurationSaving then
+				if Settings.ConfigurationSaving.Enabled and InputSettings.Flag then
+					RayfieldLibrary.Flags[InputSettings.Flag] = InputSettings
+				end
+			end
+
+            return InputSettings
 		end
 
 		-- Dropdown
