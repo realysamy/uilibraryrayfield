@@ -1933,6 +1933,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			function DropdownSettings:Set(NewOption)
+                if NewOption == nil then
+                    print("The option is nil");
+                    return
+                end
 				DropdownSettings.CurrentOption = NewOption
 
 				if typeof(DropdownSettings.CurrentOption) == "string" then
