@@ -2258,6 +2258,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Slider.Main.Information.Text = tostring(SliderSettings.CurrentValue) .. " " .. SliderSettings.Suffix
 			end
 
+			if Slider.Main.Information.Text ~= SliderSettings.CurrentValue then
+				Slider.Main.Information.Text = SliderSettings.CurrentValue
+			end
+
 
 			Slider.MouseEnter:Connect(function()
 				TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.ElementBackgroundHover}):Play()
