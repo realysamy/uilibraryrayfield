@@ -2258,10 +2258,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Slider.Main.Information.Text = tostring(SliderSettings.CurrentValue) .. " " .. SliderSettings.Suffix
 			end
 
-			if Slider.Main.Information.Text ~= tostring(SliderSettings.CurrentValue) then
-				Slider.Main.Information.Text = tostring(SliderSettings.CurrentValue)
-			end
-
 
 			Slider.MouseEnter:Connect(function()
 				TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.ElementBackgroundHover}):Play()
@@ -2345,7 +2341,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			function SliderSettings:Set(NewVal)
 				TweenService:Create(Slider.Main.Progress, TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Slider.Main.AbsoluteSize.X * ((NewVal + SliderSettings.Range[1]) / (SliderSettings.Range[2] - SliderSettings.Range[1])) > 5 and Slider.Main.AbsoluteSize.X * (NewVal / (SliderSettings.Range[2] - SliderSettings.Range[1])) or 5, 1, 0)}):Play()
-				Slider.Main.Information.Text = tostring(NewVal) .. " " .. SliderSettings.Suffix
+				Slider.Main.Information.Text = tostring(NewVal)
+				print("new val: "..tostring(NewVal))
+				print("the text: "..Slider.Main.Information.Text)
 				local Success, Response = pcall(function()
 					SliderSettings.Callback(NewVal)
 				end)
