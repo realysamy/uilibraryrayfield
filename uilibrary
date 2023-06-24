@@ -2356,6 +2356,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 				end
 				SliderSettings.CurrentValue = NewVal
+				if Slider.Main.Information.Text ~= SliderSettings.CurrentValue then
+					Slider.Main.Information.Text = SliderSettings.CurrentValue
+				end
 			end
 			if Settings.ConfigurationSaving then
 				if Settings.ConfigurationSaving.Enabled and SliderSettings.Flag then
